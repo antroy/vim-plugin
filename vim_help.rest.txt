@@ -1,0 +1,27 @@
+==============
+Vim Cheatsheet
+==============
+
+This file lists the various shortcuts for plugins installed.
+
+,v Open vimrc
+,r Reload vimrc
+,pr Run current file as a python script in external console.
+,ps Open python script buffer
+,pe Execute current buffer as python script
+,s Global Replace
+,o Toggle code browser.
+,ip Replace all python snippets in the current line. (e.g. "77 times 216 equals {{77 * 216}}" =>  "77 times 216 equals 16632"  )
+,gp Replace all python snippets in current file.
+,z Remove highlighting.
+,\ Replace all \ with /
+,/ :Replace all / with \
+,u Open URL under cursor.
+,m Open most recently used list.
+,c Open calendar.
+
+Commands
+--------
+
+:'<,'>II - Increment selected column of numbers.
+
