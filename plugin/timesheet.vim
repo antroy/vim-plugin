@@ -1,5 +1,5 @@
 :python3 << END
-
+from imp import reload
 import timesheet
 reload(timesheet)
 

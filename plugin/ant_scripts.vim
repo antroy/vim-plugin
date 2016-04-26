@@ -1,10 +1,13 @@
-python3 import vim, sys, re
-python3 vim.command("let path = expand('<sfile>:p:h')")
-python3 PYPATH = vim.eval('path')
-python3 sys.path += [r'%s' % PYPATH]
-python3 import ant_scripts
-python3 reload(ant_scripts)
-python3 from ant_scripts import *
+python3 << END
+import vim, sys, re
+from imp import reload
+vim.command("let path = expand('<sfile>:p:h')")
+PYPATH = vim.eval('path')
+sys.path += [r'%s' % PYPATH]
+import ant_scripts
+reload(ant_scripts)
+from ant_scripts import *
+END
 
 " CVS Commands
 :command! Update !cvs update %

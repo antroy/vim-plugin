@@ -5,12 +5,16 @@ endif
 
 let b:did_ftplugin = 1  " Don't load myself another time for this buffer
 
-py import vim, sys, re
-py vim.command("let path = expand('<sfile>:p:h')")
-py PYPATH = vim.eval('path')
-py sys.path += [PYPATH, PYPATH + "../plugin"]
-py import address
-py reload(address)
+python3 << END
+import vim, sys, re
+from imp import reload
+
+vim.command("let path = expand('<sfile>:p:h')")
+PYPATH = vim.eval('path')
+sys.path += [PYPATH, PYPATH + "../plugin"]
+import address
+reload(address)
+END
 
 command! Tidy py address.clean_buff()
 
