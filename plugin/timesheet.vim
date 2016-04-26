@@ -1,4 +1,4 @@
-:py << END
+:python3 << END
 
 import timesheet
 reload(timesheet)
@@ -15,8 +15,8 @@ def timelog(*args):
         vim.command("call setreg('t', '%s')" % out)
 END
 
-:command! -nargs=* Time :py timelog(<args>)
-:command! TimeCat :py timesheet.listProjectCodes()
-:command! Timesheet :py parseLog()
-:command! TimeUI :py timesheet.showUI()
+:command! -nargs=* Time :python3 timelog(<args>)
+:command! TimeCat :python3 timesheet.listProjectCodes()
+:command! Timesheet :python3 parseLog()
+:command! TimeUI :python3 timesheet.showUI()
 
