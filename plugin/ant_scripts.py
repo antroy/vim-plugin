@@ -228,11 +228,11 @@ def rot(num_or_char):
     except:
         num = CHARS.find(num_or_char)
         if not (0 <= num < 26):
-            print "'%s' is not an ASCII lower case letter!" % num_or_char
+            print("'%s' is not an ASCII lower case letter!" % num_or_char)
             return
 
     if not (0 <= num < 26):
-        print "'%s' is not in the range 0-25!"
+        print("'%s' is not in the range 0-25!")
         return
 
     tt = string.maketrans(CHARS, CHARS[num:] + CHARS[0:num])
