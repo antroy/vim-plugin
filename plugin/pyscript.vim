@@ -34,7 +34,7 @@ function! s:PyScriptBufferOpen()
 endfunction
 
 function! s:PyExecute()
-python <<END
+python3 <<END
 import os, tempfile
 command_lines = list(vim.current.buffer)
 command = "\n".join(command_lines)

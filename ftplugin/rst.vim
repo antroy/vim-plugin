@@ -1,7 +1,7 @@
 setlocal spell
 
 function! RenderGraphs(...)
-python << EOF
+python3 << EOF
 import os, re
 from subprocess import Popen, PIPE
 
