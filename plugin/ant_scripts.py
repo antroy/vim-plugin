@@ -307,7 +307,7 @@ def xpath(xp, filename):
 
     try:
         nodes = doc.xpath(xp, namespaces=ns)
-    except Exception, ex:
+    except Exception as ex:
         pass
 
     if nodes:
