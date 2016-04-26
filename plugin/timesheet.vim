@@ -5,13 +5,13 @@ reload(timesheet)
 
 def parseLog():
     out = timesheet.parseLog()
-    print out
+    print(out)
     vim.command("call setreg('t', '%s')" % out)
 
 def timelog(*args):
     out = timesheet.timelog(*args)
     if out:
-        print out
+        print(out)
         vim.command("call setreg('t', '%s')" % out)
 END
 

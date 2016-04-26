@@ -6,16 +6,16 @@
     Usage: pydiction.py <module(s)> [-v]
     (Note: If you're getting import errors try importing the Package's main module below in this file)
 
-    Example: The following will append all the time and math modules' attributes to the file "pydiction" with 
-             and without the "time." and "math." prefix:   
-             
+    Example: The following will append all the time and math modules' attributes to the file "pydiction" with
+             and without the "time." and "math." prefix:
+
                  $python pydiction.py time math
-             
+
              To print the output to stdout, supply the -v option (This won't append to the pydiction file):
-             
+
                  $python pydiction.py -v time math
 """
-             
+
 
 
 __author__ = 'Ryan (gt3) Kulla <ambiod@sbcglobal.net>'
@@ -46,8 +46,8 @@ def mod_lookup(mod_name, sub_mods, write_to, dig=True):
         exec "import %s" % mod_name
     except ImportError, err_msg:
         if sub_mods != []: # sub_mod isn't an importable module
-            sub_mods.remove(mod_name) 
-        else: 
+            sub_mods.remove(mod_name)
+        else:
             sys.stderr.write("ImportError: %s\n" % err_msg)
             sys.exit()
 
@@ -87,9 +87,9 @@ if __name__ == '__main__':
         sys.argv.remove("-v")
     else:
         if os.path.exists("pydiction"):
-            print "Appending to pydiction file.."
+            print("Appending to pydiction file..")
         else:
-            print "Creating and writing to pydiction file.."
+            print("Creating and writing to pydiction file..")
         write_to = open("pydiction", "a")
 
     main_loop(write_to)
