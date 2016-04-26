@@ -11,14 +11,14 @@ set foldenable
 " %g/[c]/norm jzc
 nohlsearch
 
-python << END
+python3 << END
 COMPLETED_PATTERN = r"(\s*(?:\d+\.)+)\s+(?![c])([^[ ].*)"
 ITEM_PATTERN = r"(\s*)((?:\d+\.)+)"
 END
 
 
 function! ToggleDone()
-python << END
+python3 << END
 import re
 lines = buff()
 
@@ -42,7 +42,7 @@ END
 endfunction
 
 function! NewItem(level)
-python << END
+python3 << END
 import re
 lines = buff()
 level = int(vim.eval('a:level'))

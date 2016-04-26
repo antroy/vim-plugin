@@ -76,4 +76,4 @@ def clean_buff():
 if __name__ == "__main__":
     import sys
     lines = open(sys.argv[1]).readlines()
-    print "\n".join(pretty_print(parse_buff(lines)))
+    print("\n".join(pretty_print(parse_buff(lines))))

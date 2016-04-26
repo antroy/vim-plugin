@@ -1,7 +1,7 @@
 setlocal spell
 
 function! RenderGraphs(...)
-python << EOF
+python3 << EOF
 import os, re
 from subprocess import Popen, PIPE
 
@@ -21,7 +21,7 @@ class DotFile(object):
         self.content.append(line)
     
     def render(self):
-        print "Rendering", self.name
+        print("Rendering", self.name)
         outputfile = os.path.join(directory, "%s.png" % self.name)
         data = "\n".join(self.content)
         command = ["dot", "-Tpng", '-o%s' % outputfile]

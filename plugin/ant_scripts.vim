@@ -1,55 +1,58 @@
-py import vim, sys, re
-py vim.command("let path = expand('<sfile>:p:h')")
-py PYPATH = vim.eval('path')
-py sys.path += [r'%s' % PYPATH]
-py import ant_scripts
-py reload(ant_scripts)
-py from ant_scripts import *
+python3 << END
+import vim, sys, re
+from imp import reload
+vim.command("let path = expand('<sfile>:p:h')")
+PYPATH = vim.eval('path')
+sys.path += [r'%s' % PYPATH]
+import ant_scripts
+reload(ant_scripts)
+from ant_scripts import *
+END
 
 " CVS Commands
 :command! Update !cvs update %
 :command! Commit !echo commit -m "<f-args>" %
 
 
-:command! -range SortLines <line1>,<line2>py sort_buffer()
-:command! -range RevLines <line1>,<line2>py reverse_buffer()
-:command! -range -nargs=1 SortRe <line1>,<line2>py sort_buffer(re_cmp(<f-args>))
-:command! -range RemDup    <line1>,<line2>py remove_dups()
-:command! -range CountDup  <line1>,<line2>py count_dups()
-:command! -range -nargs=1 Rot <line1>,<line2>py rot(<f-args>)
-:command! -range Inc <line1>,<line2>py increment()
-:command! -range IncL <line1>,<line2>py increment("left")
-:command! -range IncR <line1>,<line2>py increment("right")
+:command! -range SortLines <line1>,<line2>python3 sort_buffer()
+:command! -range RevLines <line1>,<line2>python3 reverse_buffer()
+:command! -range -nargs=1 SortRe <line1>,<line2>python3 sort_buffer(re_cmp(<f-args>))
+:command! -range RemDup    <line1>,<line2>python3 remove_dups()
+:command! -range CountDup  <line1>,<line2>python3 count_dups()
+:command! -range -nargs=1 Rot <line1>,<line2>python3 rot(<f-args>)
+:command! -range Inc <line1>,<line2>python3 increment()
+:command! -range IncL <line1>,<line2>python3 increment("left")
+:command! -range IncR <line1>,<line2>python3 increment("right")
 
 function! Lower(text)
-    py text = vim.eval("a:text")
-    py vim.command('let @m = "' + text.lower() + '"')
+    python3 text = vim.eval("a:text")
+    python3 vim.command('let @m = "' + text.lower() + '"')
     return @m
 endfunction
 
 function! Upper(text)
-    py text = vim.eval("a:text")
-    py vim.command('let @m = "' + text.upper() + '"')
+    python3 text = vim.eval("a:text")
+    python3 vim.command('let @m = "' + text.upper() + '"')
     return @m
 endfunction
 
 function! CapsCase(text)
-    py transform_match(caps_case)
+    python3 transform_match(caps_case)
     return @m
 endfunction
 
 function! LowerCaps(text)
-    py transform_match(lower_case)
+    python3 transform_match(lower_case)
     return @m
 endfunction
 
 function! CamelCase(text)
-    py transform_match(CamelCase)
+    python3 transform_match(CamelCase)
     return @m
 endfunction
 
 function! LowerCamel(text)
-    py transform_match(camelCase)
+    python3 transform_match(camelCase)
     return @m
 endfunction
 
@@ -59,12 +62,12 @@ function! CleanDiffLog()
     %g/^File/norm dw
     %s/\vchanged from revision [0-9.]+ to //ge
     %s/\vis new; [0-9a-zA-Z_.-]+ revision //ge
-    py align_cols()
-    py sort_buffer(prop_biased_sort)
+    python3 align_cols()
+    python3 sort_buffer(prop_biased_sort)
 endfunction
 
 function! Sub(search, replace)
-py sub_with_function()
+python3 sub_with_function()
 endfunction
 
 command! -range -nargs=* S <line1>,<line2>call Sub(<f-args>)
