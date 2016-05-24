@@ -86,34 +86,17 @@ def transform_match(transformation):
     out = transform_sentence(text, transformation)
     vim.command('let @m = "%s"' % out)
 
-PROP_STRING = ".properties"
-
-def prop_biased_sort(x, y):
-    xprop = PROP_STRING in x
-    yprop = PROP_STRING in y
-
-    ordinary_comp = not operator.xor(xprop, yprop)
-
-    if ordinary_comp:
-        return cmp(x, y)
-    elif xprop:
-        return 1
-    else:
-        return -1
-
-pbs = prop_biased_sort
-
 def get_buffer_or_range():
     if len(vim.current.range) > 1:
         return vim.current.range
     else:
         return vim.current.buffer
 
-def sort_buffer(cmp=None):
+def sort_buffer(keyfn=None):
     buff = get_buffer_or_range()
 
     lines = buff[:]
-    lines.sort(cmp)
+    lines.sort(key=keyfn)
     buff[:] = lines
 
 def reverse_buffer(cmp=None):
@@ -126,21 +109,17 @@ def reverse_buffer(cmp=None):
 def re_cmp(regex):
     p = re.compile(regex)
     group_count = len(p.groupindex)
-    def _cmp(one, two):
+    def keyfn(one):
         m1 = p.search(one)
-        m2 = p.search(two)
 
         if group_count:
-            tup1 = tuple(m1.groupdict()[key] for key in sorted(m1.groupdict().keys()))
-            tup2 = tuple(m2.groupdict()[key] for key in sorted(m2.groupdict().keys()))
+            return tuple(m1.groupdict()[key] for key in sorted(m1.groupdict().keys()))
         elif p.groups:
-            tup1 = m1.groups()
-            tup2 = m2.groups()
+            return m1.groups()
         else:
-            return cmp(one, two)
+            return one
 
-        return cmp(tup1, tup2)
-    return _cmp
+    return keyfn
 
 def remove_dups():
     lines = get_buffer_or_range()
