@@ -1,6 +1,6 @@
 python3 << END
 import vim, sys, re
-from imp import reload
+from importlib import reload
 vim.command("let path = expand('<sfile>:p:h')")
 PYPATH = vim.eval('path')
 sys.path += [r'%s' % PYPATH]
